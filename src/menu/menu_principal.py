@@ -2,6 +2,9 @@ from src.modelos.modelo_google import ModeloGoogle
 from src.modelos.modelo_groq import ModeloGroq 
 from src.modelos.modelo_local import ModeloLocal 
 from src.modelos.modelo_llama import ModeloLlama
+from src.modelos.prompt_01 import Prompt01
+from src.modelos.prompt_02 import Prompt02
+
 #pip install rich
 import os
 from rich.console import Console
@@ -26,6 +29,8 @@ class MenuPrincipal():
         print("2.Modelo groq API KEY")
         print("3.Modelo local (Ollama)")
         print("4.Modelo llama.cpp")
+        print("5.Prompt Basico")
+        print("6.Prompt Template")
         print("0.Salir")
 
     def ejecutar_opcion(self):
@@ -63,6 +68,20 @@ class MenuPrincipal():
                 prompt=input("Ingrese su prompt: ")
                 respuesta=modelo_llama.generar_respuesta(prompt)
                 print("Respuesta del modelo Llama.cpp:")
+                #print(respuesta)
+                self.console.print(Markdown(respuesta))
+
+            elif self.opcion=="5":
+                prompt_01=Prompt01()
+                respuesta=prompt_01.generar_respuesta()
+                print("Respuesta del Prompt Basico:")
+                #print(respuesta)
+                self.console.print(Markdown(respuesta))
+
+            elif self.opcion=="6":
+                prompt_02=Prompt02()
+                respuesta=prompt_02.generar_respuesta()
+                print("Respuesta del Prompt Template:")
                 #print(respuesta)
                 self.console.print(Markdown(respuesta))
 
